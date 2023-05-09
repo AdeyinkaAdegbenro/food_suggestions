@@ -22,5 +22,4 @@ services:
       - worker
 tests:
   - name: unit
-    args: ["python", "-m", "unittest"]
-
+    args: ["python", "-m", "unittest", "discover", "-s", "tests/unit_tests/"]
