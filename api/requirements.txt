@@ -1,0 +1,8 @@
+Flask
+gunicorn
+requests
+Redis
+celery
+flask-cors
+requests
+psycopg2-binary
