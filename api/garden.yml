@@ -23,7 +23,4 @@ services:
 tests:
   - name: unit
     args: ["python", "-m", "unittest"]
-    dependencies:
-      - create-db
-      - worker
 
