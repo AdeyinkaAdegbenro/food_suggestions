@@ -1,7 +1,7 @@
 from app import app, get_redis
 from unittest import mock, TestCase
 
-class TestIntegrations(TestCase):
+class TestApp(TestCase):
 
     def setUp(self) -> None:
         self.ctx = app.app_context()
