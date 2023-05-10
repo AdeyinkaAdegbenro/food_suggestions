@@ -35,17 +35,3 @@ tasks:
     dependencies: [postgres]
     env:
       <<: *env
-
-  - name: create-testdb
-    command: [/bin/sh, -c]
-    args:
-      [
-        "sleep 15 && createdb ${var.test-postgres-database} -O ${var.test-postgres-username} --host=postgres --port=5432 -w -U ${var.test-postgres-username}  && psql -w -U ${var.test-postgres-username} --host=postgres --port=5432 -d ${var.test-postgres-database} -c 'CREATE TABLE IF NOT EXISTS food_suggestions (id serial primary key, food VARCHAR(255) NOT NULL, created_at timestamp default NULL)'",
-      ]
-    dependencies: [postgres]
-    env: &env
-      PGDATABASE: ${var.test-postgres-database}
-      PGUSER: ${var.test-postgres-username}
-      PGPASSWORD: ${var.test-postgres-password}
-
-  

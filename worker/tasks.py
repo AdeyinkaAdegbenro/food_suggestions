@@ -1,5 +1,6 @@
 import psycopg2
 import json
+import os
 
 from celery import Celery
 from celery.schedules import crontab
@@ -37,7 +38,6 @@ def fetch_suggestions():
     cursor.execute(select_query)
     suggestions = cursor.fetchall()
     redis_conn = get_redis()
-    print(suggestions)
     if redis_conn.exists('suggestions'):
         redis_conn.delete('suggestions')
     redis_conn.rpush("suggestions", json.dumps(suggestions))
@@ -48,9 +48,9 @@ def fetch_suggestions():
 def connect_to_db():
     db = psycopg2.connect(
         host="postgres",
-        database="postgres",
-        user="postgres",
-        password="postgres"
+        database=os.environ.get("PGDATABASE"),
+        user=os.environ.get("PGUSER"),
+        password=os.environ.get("PGPASSWORD")
     )
     return db
 
