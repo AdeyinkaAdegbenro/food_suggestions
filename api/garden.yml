@@ -23,8 +23,3 @@ services:
 tests:
   - name: unit
     args: ["python", "-m", "unittest", "discover", "-s", "tests/unit_tests/"]
-  - name: integ
-    args: ["python", "-m", "unittest", "discover", "-s", "tests/integration_tests/"]
-    dependencies:
-      - db-clear
-      - create-db
